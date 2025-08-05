@@ -25,6 +25,7 @@
     <AdditionalFiles Include="thumb.png" Condition="Exists('thumb.png')">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AdditionalFiles>
+	<AdditionalFiles Include="thumb.jpg" />
     <AdditionalFiles Remove="Content\*\**\*.cs" />
     <AdditionalFiles Remove="Content\Other content folders" />
     <AdditionalFiles Remove="Content\Data\SBC files can go here" />

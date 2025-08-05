@@ -6,10 +6,10 @@
                 <TypeId>SafeZoneBlock</TypeId>
                 <SubtypeId>AdminSafeZoneBlock</SubtypeId>
             </Id>
-            <DisplayName>Admin Zone Block</DisplayName>
+            <DisplayName>Admin Protection Block</DisplayName>
 			<Icon>Textures\GUI\Icons\Cubes\ArtificialMass.dds</Icon>
 			<Icon>Textures\GUI\Icons\Overlays\Admin.dds</Icon>
-            <Description>Admin only Safe Zone Block. Also protects the connected grid from damage independantly of the Zone.</Description>
+            <Description>Admin only Safe Zone Block that also protects the connected grid from damage independantly of the Zone.</Description>
             <CubeSize>Large</CubeSize>
             <BlockTopology>TriangleMesh</BlockTopology>
 			<Size x="1" y="1" z="1" />
@@ -61,7 +61,7 @@
             <MaxSafeZonePowerDrainkW>0</MaxSafeZonePowerDrainkW>
             <MinSafeZonePowerDrainkW>0</MinSafeZonePowerDrainkW>
             <SafeZoneUpkeep>0</SafeZoneUpkeep>
-            <SafeZoneUpkeepTimeM>2</SafeZoneUpkeepTimeM>
+            <SafeZoneUpkeepTimeM>60</SafeZoneUpkeepTimeM>
             <!-- End Safezone Props-->
 
             <ActionSound>BlockSafeZone</ActionSound>
