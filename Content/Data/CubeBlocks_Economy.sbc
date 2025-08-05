@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <CubeBlocks>
+        <Definition xsi:type="MyObjectBuilder_SafeZoneBlockDefinition">
+            <Id>
+                <TypeId>SafeZoneBlock</TypeId>
+                <SubtypeId>AdminSafeZoneBlock</SubtypeId>
+            </Id>
+            <DisplayName>Admin Zone Block</DisplayName>
+			<Icon>Textures\GUI\Icons\Cubes\ArtificialMass.dds</Icon>
+			<Icon>Textures\GUI\Icons\Overlays\Admin.dds</Icon>
+            <Description>Admin only Safe Zone Block. Also protects the connected grid from damage independantly of the Zone.</Description>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+			<Size x="1" y="1" z="1" />
+			<ModelOffset x="0" y="0" z="0" />
+			<Model>Models\Cubes\Large\VirtualMassBlock.mwm</Model>
+			
+            <Components>
+				<Component Subtype="RestrictedConstruction" Count="1" >
+					<DeconstructId>
+						<TypeId>Ore</TypeId>
+						<SubtypeId>Scrap</SubtypeId>
+					</DeconstructId>
+				</Component>
+                <Component Subtype="Computer" Count="1" />
+                <Component Subtype="SteelPlate" Count="50" />
+            </Components>
+            <CriticalComponent Subtype="Computer" Index="0" />
+            <MountPoints>
+				<MountPoint Side="Left" StartX="0.1" StartY="0.1" EndX="0.9" EndY="0.9" />
+				<MountPoint Side="Right" StartX="0.1" StartY="0.1" EndX="0.9" EndY="0.9" />
+				<MountPoint Side="Top" StartX="0.1" StartY="0.1" EndX="0.9" EndY="0.9" />
+				<MountPoint Side="Bottom" StartX="0.1" StartY="0.1" EndX="0.9" EndY="0.9" Default="true" />
+				<MountPoint Side="Back" StartX="0.1" StartY="0.1" EndX="0.9" EndY="0.9" />
+				<MountPoint Side="Front" StartX="0.1" StartY="0.1" EndX="0.9" EndY="0.9" />
+            </MountPoints>
+            <BuildProgressModels>
+				<Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\VirtualMassBlockConstruction_1.mwm" />
+				<Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\VirtualMassBlockConstruction_2.mwm" />
+				<Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\VirtualMassBlockConstruction_3.mwm" />
+            </BuildProgressModels>
+            <ScreenAreas>
+                <ScreenArea Name="CockpitScreen_01" DisplayName="DisplayName_Screen_Large" TextureResolution="512" ScreenWidth="16" ScreenHeight="10" />
+                <ScreenArea Name="CockpitScreen_02" DisplayName="DisplayName_Screen_Keyboard" TextureResolution="256" ScreenWidth="5" ScreenHeight="2" />
+            </ScreenAreas>
+            <BlockPairName>AdminSafeZone</BlockPairName>
+            <EdgeType>Light</EdgeType>
+            <MirroringX>Y</MirroringX>
+            <MirroringY>X</MirroringY>
+            <BuildTimeSeconds>40</BuildTimeSeconds>
+			<ResourceSinkGroup>SafeZoneBlock</ResourceSinkGroup>
+            <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+            <DamagedSound>ParticleElectrical</DamagedSound>
+
+            <!-- Safezone info -->
+            <MaxSafeZoneRadius>500</MaxSafeZoneRadius>
+            <MinSafeZoneRadius>10</MinSafeZoneRadius>
+            <DefaultSafeZoneRadius>10</DefaultSafeZoneRadius>
+            <SafeZoneActivationTimeS>0</SafeZoneActivationTimeS>
+            <MaxSafeZonePowerDrainkW>0</MaxSafeZonePowerDrainkW>
+            <MinSafeZonePowerDrainkW>0</MinSafeZonePowerDrainkW>
+            <SafeZoneUpkeep>0</SafeZoneUpkeep>
+            <SafeZoneUpkeepTimeM>2</SafeZoneUpkeepTimeM>
+            <!-- End Safezone Props-->
+
+            <ActionSound>BlockSafeZone</ActionSound>
+            <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+            <DestroySound>WepSmallWarheadExpl</DestroySound>
+            <PCU>50</PCU>
+        </Definition>
+
+
+    </CubeBlocks>
+</Definitions>
