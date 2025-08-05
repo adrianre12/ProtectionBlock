@@ -1,0 +1,1 @@
+A mod for Space Engineers that adds an Admin-only zone block that also protects the grid from damage independently of the zone configuration. The primary use case is for creating zones for PVP where the buildings cannot be damaged.
