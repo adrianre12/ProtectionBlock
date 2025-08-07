@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Sandbox.ModAPI;
+﻿using Sandbox.ModAPI;
+using System.Collections.Generic;
 using VRage.Game.Components;
 using VRage.Game.ModAPI;
 
@@ -29,20 +29,20 @@ namespace Catopia.ProtectionBlock //From Digi's examples
 
         private void BeforeDamage(object target, ref MyDamageInformation info)
         {
-            if(info.Amount == 0)
+            if (info.Amount == 0)
                 return;
 
             var slim = target as IMySlimBlock;
 
-            if(slim == null)
+            if (slim == null)
                 return;
 
             // if any of the protection blocks are on this grid then protect it
-            foreach(var block in ProtectionBlocks)
+            foreach (var block in ProtectionBlocks)
             {
                 // checks for same grid-group to extend protection to piston/rotors/wheels but no connectors (change link type to Physical to include those)
                 // same grid only check: block.CubeGrid == slim.CubeGrid
-                if(MyAPIGateway.GridGroups.HasConnection(block.CubeGrid, slim.CubeGrid, GridLinkTypeEnum.Mechanical))
+                if (MyAPIGateway.GridGroups.HasConnection(block.CubeGrid, slim.CubeGrid, GridLinkTypeEnum.Mechanical))
                 {
                     info.Amount = 0;
                     return;

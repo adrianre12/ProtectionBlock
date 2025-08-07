@@ -1,10 +1,9 @@
 ﻿using ObjectBuilders.SafeZone;
-using Sandbox.Common.ObjectBuilders;
+using Sandbox.Game.EntityComponents;
 using Sandbox.ModAPI;
 using SpaceEngineers.Game.ModAPI;
 using System;
 using VRage.Game.Components;
-using VRage.Game.ModAPI;
 using VRage.ModAPI;
 using VRage.ObjectBuilders;
 
@@ -14,19 +13,44 @@ namespace Catopia.ProtectionBlock
     public class ProtectionBlock : MyGameLogicComponent
     {
         IMySafeZoneBlock block;
+        private bool protectionEnabled = true;
+
+        public static Guid ZoneIdsKey = new Guid("4C97F675-CED0-4624-BD67-E2E0C686BDFE");
+
+        public bool Terminal_ExampleToggle
+        {
+            get
+            {
+                return protectionEnabled;
+            }
+            set
+            {
+                protectionEnabled = value;
+                updateProtection();
+                block.Storage[ZoneIdsKey] = protectionEnabled.ToString();
+            }
+        }
 
         public override void Init(MyObjectBuilder_EntityBase objectBuilder)
         {
+            Log.Msg("Init...");
             block = Entity as IMySafeZoneBlock;
             block.EnabledChanged += Block_EnabledChanged;
-            
-            NeedsUpdate = MyEntityUpdateEnum.BEFORE_NEXT_FRAME;
 
+            if (block.Storage == null)
+                block.Storage = new MyModStorageComponent();
+
+            NeedsUpdate = MyEntityUpdateEnum.BEFORE_NEXT_FRAME;
         }
 
         private void Block_EnabledChanged(IMyTerminalBlock obj)
-        {           
-            if (block.Enabled)
+        {
+            updateProtection();
+        }
+
+        internal void updateProtection()
+        {
+            if (block.Enabled && protectionEnabled)
             {
                 ProtectionSession.Instance?.ProtectionBlocks.Add(block);
             }
@@ -38,27 +62,33 @@ namespace Catopia.ProtectionBlock
 
         public override void UpdateOnceBeforeFrame()
         {
+            TerminalControls.DoOnce(ModContext);
+
             if (block.CubeGrid?.Physics == null)
                 return;
-            NeedsUpdate = MyEntityUpdateEnum.EACH_100TH_FRAME;
-        }
 
-        public override void UpdateBeforeSimulation100()
-        {
-            base.UpdateBeforeSimulation100();
-          
-            if (block.IsSafeZoneEnabled())
+            string storage;
+            if (block.Storage.TryGetValue(ZoneIdsKey, out storage))
             {
-                ProtectionSession.Instance?.ProtectionBlocks.Add(block);
-            } else
-            {
-                ProtectionSession.Instance?.ProtectionBlocks.Remove(block);
+                try
+                {
+                    protectionEnabled = Boolean.Parse(storage);
+                }
+                catch (Exception e)
+                {
+                    Log.Msg($"Storage e={e}");
+                    protectionEnabled = false; ;
+                }
             }
         }
 
-        public override void Close() 
+
+        public override void Close()
         {
+            block.EnabledChanged -= Block_EnabledChanged;
+
             ProtectionSession.Instance?.ProtectionBlocks.Remove((IMyFunctionalBlock)Entity);
         }
+
     }
 }

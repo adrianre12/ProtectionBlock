@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-   <EntityComponents>
-<!--
-        <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-            <Id>
-                <TypeId>Inventory</TypeId>
-                <SubtypeId>SafeZoneBlock</SubtypeId>
-            </Id>
-            <Volume>0.005</Volume>
-            <InputConstraint IsWhitelist="true">
-                <Entry>
-                    <TypeId>Component</TypeId>
-                    <SubtypeId>ZoneChip</SubtypeId>
-                </Entry>
-            </InputConstraint>
-        </EntityComponent>
--->
-    </EntityComponents>
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_ModStorageComponentDefinition">
+			<Id>
+				<TypeId>ModStorageComponent</TypeId>
+				<SubtypeId>AdminSafeZoneBlock</SubtypeId>
+			</Id>
+			<RegisteredStorageGuids>
+				<guid>4C97F675-CED0-4624-BD67-E2E0C686BDFE</guid>
+			</RegisteredStorageGuids>
+		</EntityComponent>
+	</EntityComponents>
 </Definitions>
