@@ -7,7 +7,7 @@
         <SubtypeId>RestrictedConstruction</SubtypeId>
       </Id>
       <DisplayName>DisplayName_Item_ConstructionComponent</DisplayName>
-      <Icon>Textures\GUI\Icons\component\construction_restricted.dds</Icon>
+      <Icon>Textures\GUI\Icons\components\construction_restricted.dds</Icon>
       <Prerequisites>
         <Item Amount="8" TypeId="Ingot" SubtypeId="Iron" />
       </Prerequisites>
