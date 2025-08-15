@@ -79,6 +79,7 @@ namespace Catopia.ProtectionBlock
                     Log.Msg($"Storage e={e}");
                     protectionEnabled = false; ;
                 }
+                updateProtection();
             }
         }
 
